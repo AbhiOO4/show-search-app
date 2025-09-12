@@ -5,34 +5,51 @@ const btn = document.querySelector("button")
 
 // const showImage = document.querySelector("img")
 
-const showName = document.querySelector("#showName")
+// const showName = document.querySelector("#showName")
 
-const showRating = document.querySelector("#showRating")
+// const showRating = document.querySelector("#showRating")
 
 const showInformation = document.querySelector("#showInformation")
 
-const image = document.createElement("img")
+const form = document.querySelector("form")
+
+
 
 
 const showData = async () => {
     try {
+        showInformation.innerHTML = ""
         searchTerm = tvShow.value
         const res = await axios.get(`https://api.tvmaze.com/search/shows?q=${searchTerm}`)
-        image.src = res.data[0].show.image.medium
-        showInformation.append(image)
-        showName.innerText = res.data[0].show.name
-        showRating.innerText = `${Math.floor(res.data[0].score * 10)}/10`
+        const infos = res.data
+        for (let info of infos) {
+            let image = document.createElement("img")
+            let showName = document.createElement("h3")
+            let showRating = document.createElement("p")
+            let showDiv = document.createElement("div")
+            showDiv.classList.add("col")
+            showDiv.classList.add("infoDec")
+            showInformation.append(showDiv)
+            console.log(info.show.image.medium)
+            image.src = info.show.image.medium
+            showDiv.append(image)
+            showName.innerText = info.show.name
+            showDiv.append(showName)
+            showRating.innerText = `${Math.floor(info.score * 10)}/10`
+            showDiv.append(showRating)
+        }
+        
     }
     catch(e){
         console.log("error", e)
-        showName.innerText = "No result available"
-        showRating.innerText = ""
-        showInformation.removeChild(image)
+        // showInformation.innerText = "No result available"
     }
-    tvShow.value = ""
 }
 
 
-btn.addEventListener("click", showData)
+form.addEventListener("submit", function(e){
+    e.preventDefault()
+    showData()
+})
 
 

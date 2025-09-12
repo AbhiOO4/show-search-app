@@ -1,0 +1,50 @@
+
+.marginBig {
+    margin-inline: 200px;
+}
+
+h1{
+    font-weight: 500;
+    font-size: 70px;
+    color: aliceblue;
+}
+
+body{
+    background-color: black;
+    color: rgba(255, 255, 255, 0.726);
+}
+
+.btn{
+    color: white;
+    background-color: rgba(10, 161, 236, 0.699);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgb(145, 191, 219);
+}
+
+.btn:hover {
+    background-color: rgba(12, 143, 209, 0.647);
+    box-shadow: 1px 2px 20px 1px rgba(255, 255, 255, 0.204);
+}
+
+
+.infoDec{
+    background-color: rgba(240, 248, 255, 0.103);
+    /* border: 1px solid rgba(128, 128, 128, 0.657); */
+    /* transition: 250ms; */
+    box-shadow: 0px 20px 100px 0px rgba(64, 137, 221, 0.423);
+}
+
+@media (max-width: 700px){
+    h1{
+        font-size: 50px;
+    }
+    .marginBig{
+        margin-inline: 10px;
+    }
+}
+
+@media (max-width: 400px){
+    h1{
+        font-size: 40px;
+    }
+}
