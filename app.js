@@ -22,23 +22,30 @@ const showData = async () => {
         searchTerm = tvShow.value
         const res = await axios.get(`https://api.tvmaze.com/search/shows?q=${searchTerm}`)
         const infos = res.data
-        for (let info of infos) {
-            let image = document.createElement("img")
-            let showName = document.createElement("h3")
-            let showRating = document.createElement("p")
-            let showDiv = document.createElement("div")
-            showDiv.classList.add("col")
-            showDiv.classList.add("infoDec")
-            showInformation.append(showDiv)
-            console.log(info.show.image.medium)
-            image.src = info.show.image.medium
-            showDiv.append(image)
-            showName.innerText = info.show.name
-            showDiv.append(showName)
-            showRating.innerText = `${Math.floor(info.score * 10)}/10`
-            showDiv.append(showRating)
+        if (infos == ""){
+            console.log("noooo")
+            let h2 = document.createElement("h2")
+            h2.innerText = "No content available"
+            showInformation.append(h2)
         }
-        
+        else {
+            for (let info of infos) {
+                let image = document.createElement("img")
+                let showName = document.createElement("h3")
+                let showRating = document.createElement("p")
+                let showDiv = document.createElement("div")
+                showDiv.classList.add("col")
+                showDiv.classList.add("infoDec")
+                showInformation.append(showDiv)
+                console.log(info.show.image.medium)
+                image.src = info.show.image.medium
+                showDiv.append(image)
+                showName.innerText = info.show.name
+                showDiv.append(showName)
+                showRating.innerText = `${Math.floor(info.score * 10)}/10`
+                showDiv.append(showRating)
+            }
+        }
     }
     catch(e){
         console.log("error", e)
