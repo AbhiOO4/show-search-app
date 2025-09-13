@@ -13,9 +13,6 @@ const showInformation = document.querySelector("#showInformation")
 
 const form = document.querySelector("form")
 
-
-
-
 const showData = async () => {
     try {
         showInformation.innerHTML = ""
@@ -30,14 +27,16 @@ const showData = async () => {
         }
         else {
             for (let info of infos) {
+                console.log(info.show.webChannel)
                 let image = document.createElement("img")
                 let showName = document.createElement("h3")
                 let showRating = document.createElement("p")
                 let showDiv = document.createElement("div")
                 showDiv.classList.add("col")
                 showDiv.classList.add("infoDec")
+                image.classList.add("my-3")
                 showInformation.append(showDiv)
-                console.log(info.show.image.medium)
+                // console.log(info.show.image.medium)
                 image.src = info.show.image.medium
                 showDiv.append(image)
                 showName.innerText = info.show.name
@@ -58,5 +57,6 @@ form.addEventListener("submit", function(e){
     e.preventDefault()
     showData()
 })
+
 
 
